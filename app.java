@@ -1,7 +1,12 @@
 package com.example;
 
 public class App {
+
+    public static String getMessage() {
+        return "Hello, Maven + GitHub Actions!";
+    }
+
     public static void main(String[] args) {
-        System.out.println("Hello, Maven + GitHub Actions!");
+        System.out.println(getMessage());
     }
 }
