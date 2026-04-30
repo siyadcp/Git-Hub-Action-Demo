@@ -1,4 +1,4 @@
-name: Java Maven Build
+name: Java Maven CI
 
 on:
   push:
@@ -14,17 +14,20 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Java
+      - name: Setup Java
         uses: actions/setup-java@v4
         with:
-          distribution: 'temurin'
-          java-version: '17'
-          cache: 'maven'
+          distribution: temurin
+          java-version: 17
+          cache: maven
 
-      - name: Build with Maven
-        run: mvn clean package
+      - name: Run Unit Tests
+        run: mvn test
 
-      - name: Upload artifact
+      - name: Build JAR
+        run: mvn package -DskipTests
+
+      - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: my-java-app
